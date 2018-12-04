@@ -52,7 +52,10 @@ gulp.task("bUglify", function() {
         .pipe(gulp.dest("./bulid/js"))
 })
 
-
+gulp.task("watch", function() {
+    gulp.watch("./src/scss/*.scss", gulp.series("devscss"))
+    gulp.watch("./src/js/*.js", gulp.series("bUglify"))
+})
 gulp.task("bHtml", function() {
     return gulp.src("./src/**/*.html")
         .pipe(htmlmin({ collapseWhitespace: true }))
@@ -64,4 +67,4 @@ gulp.task("watch", function() {
     gulp.watch("./src/scss/*.scss", gulp.series("devscss"))
     gulp.watch("./src/js/*.js", gulp.series("bUglify"))
 })
-gulp.task("defalut", gulp.series("bUglify", "copyLibs", "watch"))
+gulp.task("defalut", gulp.series("bUglify", "copyLibs", "devscss", "watch"))
