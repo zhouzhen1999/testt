@@ -37,7 +37,6 @@ gulp.task('server', function() {
                     res.end(JSON.stringify({ code: 1, data: list }))
                 } else {
                     pathname = pathname === '/' ? 'index.html' : pathname;
-                    console.log(pathname);
                     res.end(fs.readFileSync(path.join(__dirname, 'src', pathname)));
                 }
             }
@@ -56,6 +55,7 @@ gulp.task("watch", function() {
     gulp.watch("./src/scss/*.scss", gulp.series("devscss"))
     gulp.watch("./src/js/*.js", gulp.series("bUglify"))
 })
+
 gulp.task("bHtml", function() {
     return gulp.src("./src/**/*.html")
         .pipe(htmlmin({ collapseWhitespace: true }))
